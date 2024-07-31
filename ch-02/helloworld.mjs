@@ -1,6 +1,9 @@
-const fs = require('fs');
-const bytes = fs.readFileSync(__dirname + '/helloworld.wasm');
-// let hello_world = null; // function will be set later
+import { readFileSync } from 'fs';
+import { dirname } from 'path';
+
+const __dirname = dirname(new URL(import.meta.url).pathname);
+const bytes = readFileSync(__dirname + '/helloworld.wasm');
+let hello_world = null; // function will be set later
 const start_string_index = 100; // linear memory location of string;
 let memory = new WebAssembly.Memory({ initial: 1 }); // linear memory
 let importObject = {
